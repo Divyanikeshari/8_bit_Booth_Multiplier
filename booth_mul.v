@@ -18,8 +18,9 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+// shift register module
 module shift_Reg(data_in,clr,clk,ld,msb_in,data_out,sft);//msb_in is the MSB which will be insert and same as sign bit
-input [7:0] data_in;
+input [7:0] data_in; //8 bit input data
 input clr,clk,ld,sft,msb_in;
 output reg [7:0] data_out;
 always @(posedge clk)
@@ -33,6 +34,7 @@ else if(sft)
 end
 endmodule
 
+//D flip flop module
 module ff_reg (data_in,data_out,clk,clr);
 input data_in,clk,clr;
 output reg data_out;
@@ -45,6 +47,7 @@ else
 end
 endmodule
 
+//Parallel input parallel output module
 module PIPO(data_in,data_out,load,clk);
 input [7:0]data_in;
 input load,clk;
@@ -56,6 +59,7 @@ if (load)
 end 
 endmodule
 
+//Simple ALU for Addition and subtraction 
 module addsub(data_out,A,B,select);
 input [7:0] A,B;
 input select;
@@ -69,6 +73,7 @@ else if(select==0)
 end
 endmodule
 
+//Counter module
 module counter(c_out,decr,load,clk);
 input decr,load,clk;
 output reg [2:0]c_out;
@@ -81,6 +86,7 @@ else if(decr)
 end
 endmodule
 
+//Booth multiplier controller module
 module booth_mul_CP(clk, ld_A, ld_Q, clr_A, clr_Q, sft_A, sft_Q, clr_ff, ld_M, add_sub, ff_out, eqz, decr, ld_count,start,done,Q0);
 input start,clk,ff_out,Q0, eqz;
 output reg  ld_A, ld_Q, clr_A, clr_Q, sft_A, sft_Q, clr_ff, ld_M, add_sub, decr, ld_count,done;
@@ -222,7 +228,7 @@ endcase
 end
 endmodule
 
-
+// Booth multiplier dataflow module
 module booth_mul_DP(clk, data_in, start, product);
 input [7:0] data_in;
 input clk,start;
