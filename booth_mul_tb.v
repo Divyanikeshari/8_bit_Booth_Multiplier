@@ -21,11 +21,11 @@
 
 //Test bench for booth multiplier
 module booth_mul_tb;
-reg clk, start;
-reg [7:0] data_in;
-wire [15:0] product;
+reg clk, start; //declaring input as reg type
+reg [7:0] data_in; 
+wire [15:0] product; //declaring output as wire type
 
-    booth_mul_DP dp(clk, data_in, start, product); //instantiated main booth multiplier dataflow module
+booth_mul_DP dp(clk, data_in, start, product); //instantiated main booth multiplier dataflow module
 
 
 // Clock initialization
@@ -34,20 +34,21 @@ begin
     clk = 0;
     forever #5 clk = ~clk;
 end
-
-initial begin
-start = 0;
-data_in = 0;
+// Declaring initial values as 0
+initial 
+begin
+    start = 0;
+    data_in = 0;
 end
 
 initial
 begin
     @(posedge clk)
-    start=1;
+        start=1;
     @(posedge clk)
-    data_in = 8'b10001010; // multiplicand (10)
+        data_in = 8'b10001010; // multiplicand (10)
     @(posedge clk)
-    data_in= 8'b00000101; // multiplier (5)
+        data_in= 8'b00000101; // multiplier (5)
  
     #200 start = 0;
     #200$finish;
