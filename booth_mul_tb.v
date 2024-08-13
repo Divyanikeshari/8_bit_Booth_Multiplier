@@ -19,16 +19,16 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+//Test bench for booth multiplier
 module booth_mul_tb;
 reg clk, start;
 reg [7:0] data_in;
 wire [15:0] product;
 
-booth_mul_DP dp(clk, data_in, start, product);
+    booth_mul_DP dp(clk, data_in, start, product); //instantiated main booth multiplier dataflow module
 
 
-// Clock 
+// Clock initialization
 initial 
 begin
     clk = 0;
